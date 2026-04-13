@@ -6,7 +6,7 @@
 /*   By: jocalder <jocalder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 11:30:29 by jocalder          #+#    #+#             */
-/*   Updated: 2026/04/09 12:15:18 by jocalder         ###   ########.fr       */
+/*   Updated: 2026/04/13 10:53:25 by jocalder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ std::string		BitcoinExchange::trim(const std::string& str) const
 {
 	size_t	start = 0, end = str.length();
 
-	while (start < str.length() || str[start] == ' ' || str[start] == '\t')
+	while (start < str.length() && (str[start] == ' ' || str[start] == '\t'))
 		start++;
 	while (end > start && (str[end - 1] == ' ' || str[end - 1] == '\t'))
 		end--;
@@ -51,7 +51,7 @@ bool	BitcoinExchange::isValidDate(const std::string& date) const
 	{
 		if (i == 4 || i == 7)
 		continue ;
-		if (!isdigit(date[i]))
+		if (!isdigit(static_cast<unsigned char>(date[i])))
 		return false;
 	}
 	int		year = std::atoi(date.substr(0, 4).c_str());
@@ -66,7 +66,7 @@ bool	BitcoinExchange::isValidDate(const std::string& date) const
 	int		daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	if (month == 2 && isLeapYear(year))
 		daysInMonth[1] = 29;
-	if (day < daysInMonth[month - 1])
+	if (day > daysInMonth[month - 1])
 		return false;
 	return true;
 }
@@ -79,7 +79,7 @@ bool	BitcoinExchange::isValidValue(const std::string& valueStr, double& value) c
 	if (*endPtr != '\0')
 		return false;
 	if (value < 0)
-		throw std::runtime_error("Error: Not a positive number.");
+		throw std::runtime_error("Error: not a positive number.");
 	if (value > 1000)
 		throw std::runtime_error("Error: too large a number.");
 	return true;
@@ -136,6 +136,7 @@ void	BitcoinExchange::processInput(const std::string& filename)
 		if (!isValidDate(date))
 		{
 			std::cerr << "Error: bad input => " << date << std::endl;
+			continue ;
 		}
 		try
 		{
