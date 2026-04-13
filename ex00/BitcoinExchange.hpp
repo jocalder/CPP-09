@@ -6,7 +6,7 @@
 /*   By: jocalder <jocalder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 11:30:26 by jocalder          #+#    #+#             */
-/*   Updated: 2026/04/13 10:53:09 by jocalder         ###   ########.fr       */
+/*   Updated: 2026/04/13 11:03:10 by jocalder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
 #include <map>
 #include <string>
 #include <iomanip>
