@@ -6,7 +6,7 @@
 /*   By: jocalder <jocalder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 11:30:29 by jocalder          #+#    #+#             */
-/*   Updated: 2026/04/13 11:03:39 by jocalder         ###   ########.fr       */
+/*   Updated: 2026/04/13 11:12:37 by jocalder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	BitcoinExchange::loadDataBase(const std::string& filename)
 		priceStr = trim(priceStr);
 		if (!isValidDate(date))
 			continue ;
-		price = strtod(priceStr.c_str(), NULL);
+		price = std::strtod(priceStr.c_str(), NULL);
 		_db[date] = price;
 	}
 	file.close();
