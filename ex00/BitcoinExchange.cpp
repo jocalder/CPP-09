@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocalder <jocalder@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jocalder <jocalder@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 11:30:29 by jocalder          #+#    #+#             */
-/*   Updated: 2026/04/13 11:22:05 by jocalder         ###   ########.fr       */
+/*   Updated: 2026/09/10 12:47:02 by jocalder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void	BitcoinExchange::processInput(const std::string& filename)
 		throw std::runtime_error("Error: could not open file.");
 	if (!std::getline(file, line))
 		throw std::runtime_error("Error: empty file.");
-	std::getline(file, line);
 	while (std::getline(file, line))
 	{
 		std::stringstream	ss(line);
@@ -129,6 +128,7 @@ void	BitcoinExchange::processInput(const std::string& filename)
 		double				value;
 		if (!std::getline(ss, date, '|') || !std::getline(ss, valueStr))
 		{
+			std::cout << "here" << std::endl;
 			std::cerr << "Error: bad input => " << line << std::endl;
 			continue ;
 		}
